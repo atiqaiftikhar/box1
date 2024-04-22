@@ -115,6 +115,15 @@
         <!-- Step 2 Content -->
         <div id="step-2" class="tab-pane fade">
             <!-- Your HTML content for Step 2 -->
+            {{-- <form method="POST" action="{{ route('winning-percentage.update') }}">
+                @csrf
+                @method('PUT')
+                <div class="form-group">
+                    <label for="percentage">Winning Percentage:</label>
+                    <input type="number" name="percentage" id="percentage" class="form-control" value="{{ $winningPercentage->percentage }}" min="0" max="100" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form> --}}
         </div>
 
         <!-- Step 3 Content -->
@@ -169,22 +178,7 @@
         </div>
     </div>
 </div>
-{{-- <script>
-    function addRow() {
-        var table = document.getElementById("dynamic-table");
-        var row = table.insertRow(-1);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
-        var cell5 = row.insertCell(4); // Add new cell for image
-        cell1.innerHTML = '<select><option value="Coupon Code">Coupon Code</option><option value="No Prize">No Prize</option></select>';
-        cell2.innerHTML = '<input type="text">';
-        cell3.innerHTML = '<input type="text">';
-        cell4.innerHTML = '<input type="number">';
-        cell5.innerHTML = '<input type="file" accept="image/*">'; // Input type file for image
-    }
-</script> --}}
+
 <script>
     function addRow() {
         var table = document.getElementById("dynamic-table");
