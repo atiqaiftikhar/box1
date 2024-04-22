@@ -36,6 +36,54 @@
             font-size: 24px;
             font-weight: bold;
         }
+
+        /* Adjustments for card */
+        .card {
+            margin: 0 auto; /* Center the card */
+            margin-top: 20px; /* Top margin */
+            margin-bottom: 20px; /* Bottom margin */
+            width: 80%; /* Adjust width as needed */
+        }
+
+        .card-body {
+            padding: 20px; /* Padding inside the card body */
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        th {
+            background-color: #dddddd;
+            text-align: center;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: calc(100% - 20px); /* Adjust the width of input fields and select dropdown */
+            padding: 5px;
+            box-sizing: border-box;
+        }
+
+        select {
+            width: calc(100% - 20px); /* Adjust the width of select dropdown */
+        }
+
+        button {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -72,8 +120,44 @@
         <!-- Step 3 Content -->
         <div id="step-3" class="tab-pane fade">
             <!-- Your HTML content for Step 3 -->
-        </div>
+            <form method="POST" action="{{ url('/slices/store') }}" enctype="multipart/form-data">
+                @csrf
+            <div class="card">
+                <div class="card-body">
+                    <table id="dynamic-table">
+                        <tr>
 
+                            <th>Type</th>
+                            <th>Text</th>
+                            <th>Value</th>
+
+                            <th>Chance</th>
+                            <th>Image</th>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <select name="type[]">
+                                    <option value="Coupon Code">Coupon Code</option>
+                                    <option value="No Prize">No Prize</option>
+                                    <!-- Add more options as needed -->
+                                </select>
+                            </td>
+                            <td><input type="text" name="text[]"></td>
+                            <td><input type="text" name="value[]" value=""></td>
+                            <td><input type="number" name="chance[]" value=""></td>
+                            <td><input type="file" accept="image/*" name="image[]"></td>
+                        </tr>
+
+                    </table>
+                    <button type="button" onclick="addRow()">Add Row</button>
+                      <button type="submit">Submit</button>
+
+
+            </div>
+        </div>
+    </div>
+</form>
         <!-- Step 4 Content -->
         <div id="step-4" class="tab-pane fade">
             <!-- Your HTML content for Step 4 -->
@@ -85,6 +169,39 @@
         </div>
     </div>
 </div>
+{{-- <script>
+    function addRow() {
+        var table = document.getElementById("dynamic-table");
+        var row = table.insertRow(-1);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        var cell5 = row.insertCell(4); // Add new cell for image
+        cell1.innerHTML = '<select><option value="Coupon Code">Coupon Code</option><option value="No Prize">No Prize</option></select>';
+        cell2.innerHTML = '<input type="text">';
+        cell3.innerHTML = '<input type="text">';
+        cell4.innerHTML = '<input type="number">';
+        cell5.innerHTML = '<input type="file" accept="image/*">'; // Input type file for image
+    }
+</script> --}}
+<script>
+    function addRow() {
+        var table = document.getElementById("dynamic-table");
+        var row = table.insertRow(-1);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        var cell5 = row.insertCell(4); // Add new cell for image
+        cell1.innerHTML = '<select name="type[]"><option value="Coupon Code">Coupon Code</option><option value="No Prize">No Prize</option></select>';
+        cell2.innerHTML = '<input type="text" name="text[]">';
+        cell3.innerHTML = '<input type="text" name="value[]">';
+        cell4.innerHTML = '<input type="number" name="chance[]">';
+        cell5.innerHTML = '<input type="file" accept="image/*" name="image[]">'; // Input type file for image
+    }
+</script>
+
 
 </body>
 </html>
